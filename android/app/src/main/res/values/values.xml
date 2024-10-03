@@ -1,0 +1,9 @@
+<resources>
+    <string name="google_app_id" translatable="false">1:284760348052:android:5181ddacbca334a1f72b81</string>
+    <string name="gcm_defaultSenderId" translatable="false">284760348052</string>
+    <string name="default_web_client_id" translatable="false">YOUR_WEB_CLIENT_ID</string> <!-- optional if needed -->
+    <string name="firebase_database_url" translatable="false">https://brawl-storevf.firebaseio.com</string> <!-- Add if using Firebase Realtime Database -->
+    <string name="google_api_key" translatable="false">AIzaSyBSZnsoU63GgAslF4yUWke6pajSKMqGwDE</string>
+    <string name="google_storage_bucket" translatable="false">brawl-storevf.appspot.com</string>
+    <string name="project_id" translatable="false">brawl-storevf</string>
+</resources>

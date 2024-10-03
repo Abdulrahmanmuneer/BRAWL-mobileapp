@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "284760348052",
+    "project_id": "brawl-storevf",
+    "storage_bucket": "brawl-storevf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284760348052:android:5181ddacbca334a1f72b81",
+        "android_client_info": {
+          "package_name": "com.example.brawl_store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSZnsoU63GgAslF4yUWke6pajSKMqGwDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
