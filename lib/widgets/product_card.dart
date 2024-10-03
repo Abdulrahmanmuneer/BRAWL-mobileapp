@@ -10,6 +10,11 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the current theme brightness
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDarkMode ? Colors.white : Colors.black;
+    final cardColor = isDarkMode ? Colors.grey[850] : const Color.fromARGB(255, 222, 220, 220);
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
@@ -24,7 +29,7 @@ class ProductCard extends StatelessWidget {
             height: 250,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: kcontentColor,
+              color: cardColor, // Dynamic background color for the card
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(
@@ -36,9 +41,10 @@ class ProductCard extends StatelessWidget {
                 ),
                 Text(
                   product.title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
+                    color: textColor,  // Dynamic text color
                   ),
                 ),
                 Row(
@@ -46,9 +52,10 @@ class ProductCard extends StatelessWidget {
                   children: [
                     Text(
                       "\$${product.price}",
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
+                        color: textColor,  // Dynamic text color
                       ),
                     ),
                     Row(

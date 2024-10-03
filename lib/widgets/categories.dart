@@ -8,6 +8,10 @@ class Categories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the current theme brightness
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDarkMode ? Colors.white : Colors.black;
+
     return SizedBox(
       height: 90,
       child: ListView.separated(
@@ -30,8 +34,9 @@ class Categories extends StatelessWidget {
               const SizedBox(height: 5),
               Text(
                 categories[index].title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  color: textColor,  // Dynamic text color
                 ),
               ),
             ],

@@ -14,6 +14,9 @@ class RegistrationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Determine text color based on the theme mode
+    Color textColor = Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Registration'),
@@ -34,6 +37,7 @@ class RegistrationPage extends StatelessWidget {
               decoration: const InputDecoration(
                 labelText: 'Email',
               ),
+              style: TextStyle(color: textColor), // Set text color
             ),
             TextFormField(
               controller: passwordController,
@@ -41,36 +45,42 @@ class RegistrationPage extends StatelessWidget {
               decoration: const InputDecoration(
                 labelText: 'Password',
               ),
+              style: TextStyle(color: textColor), // Set text color
             ),
             TextFormField(
               controller: firstNameController,
               decoration: const InputDecoration(
                 labelText: 'First Name',
               ),
+              style: TextStyle(color: textColor), // Set text color
             ),
             TextFormField(
               controller: lastNameController,
               decoration: const InputDecoration(
                 labelText: 'Last Name',
               ),
+              style: TextStyle(color: textColor), // Set text color
             ),
             TextFormField(
               controller: ageRangeController,
               decoration: const InputDecoration(
                 labelText: 'Age Range',
               ),
+              style: TextStyle(color: textColor), // Set text color
             ),
             TextFormField(
               controller: addressController,
               decoration: const InputDecoration(
                 labelText: 'Address',
               ),
+              style: TextStyle(color: textColor), // Set text color
             ),
             TextFormField(
               controller: phoneController,
               decoration: const InputDecoration(
                 labelText: 'Phone',
               ),
+              style: TextStyle(color: textColor), // Set text color
             ),
             const SizedBox(height: 16.0),
             ElevatedButton(

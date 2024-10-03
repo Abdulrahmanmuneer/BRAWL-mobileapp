@@ -5,10 +5,7 @@ import 'package:brawl_store/models/cart_item.dart';
 import 'package:brawl_store/widgets/check_out_box.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:brawl_store/constants.dart';
-import 'package:brawl_store/models/cart_item.dart';
 import 'package:brawl_store/widgets/cart_tile.dart';
-import 'package:brawl_store/widgets/check_out_box.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -20,28 +17,23 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    // Check if the current theme is dark mode
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
-     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: kcontentColor,
-        centerTitle: true,
-        title: const Text(
-          "My Cart",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        leadingWidth: 60,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 5),
-          child: IconButton(
-            onPressed: () {},
-            style: IconButton.styleFrom(
-              backgroundColor: Colors.white,
+        backgroundColor: isDarkMode ? Colors.black : kcontentColor, // Black in dark mode
+        title: Center(
+          child: Text(
+            "My Cart",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: isDarkMode ? Colors.white : const Color.fromARGB(255, 0, 0, 0), // White in dark mode, black in light mode
             ),
-            icon: const Icon(Ionicons.chevron_back),
           ),
         ),
+        automaticallyImplyLeading: false, // Remove the back arrow
       ),
       bottomSheet: CheckOutBox(
         items: cartItems,

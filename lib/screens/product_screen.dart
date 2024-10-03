@@ -22,8 +22,11 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Check if the current theme is dark mode
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: kcontentColor,
+      backgroundColor: isDarkMode ? Colors.black : kcontentColor, // Change background color for dark mode
       floatingActionButton: AddToCart(
         currentNumber: currentNumber,
         onAdd: () {
@@ -45,10 +48,7 @@ class _ProductScreenState extends State<ProductScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-
               const ProductAppBar(),
-
 
               ImageSlider(
                 onChange: (index) {
@@ -60,8 +60,6 @@ class _ProductScreenState extends State<ProductScreen> {
                 image: widget.product.image,
               ),
               const SizedBox(height: 10),
-
-
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -85,17 +83,15 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
               ),
 
-
-
               const SizedBox(height: 20),
               Container(
                 width: double.infinity,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(20),
                     topLeft: Radius.circular(20),
                   ),
-                  color: Colors.white,
+                  color: isDarkMode ? Colors.grey[800] : Colors.white, // Adjust container color for dark mode
                 ),
                 padding: const EdgeInsets.only(
                   left: 20,
@@ -108,11 +104,12 @@ class _ProductScreenState extends State<ProductScreen> {
                   children: [
                     ProductInfo(product: widget.product),
                     const SizedBox(height: 20),
-                    const Text(
+                    Text(
                       "Color",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
+                        color: isDarkMode ? Colors.white : Colors.black, // Text color for dark mode
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -156,8 +153,6 @@ class _ProductScreenState extends State<ProductScreen> {
                         ),
                       ),
                     ),
-
-                    
                     const SizedBox(height: 20),
                     ProductDescription(text: widget.product.description),
                   ],

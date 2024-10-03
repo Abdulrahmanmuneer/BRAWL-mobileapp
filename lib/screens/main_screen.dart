@@ -7,7 +7,6 @@ import 'package:brawl_store/constants.dart';
 import 'package:brawl_store/screens/cart_screen.dart';
 import 'package:brawl_store/screens/home_screen.dart';
 
-
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -20,14 +19,17 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> screens = [
     const HomeScreen(),
-    const LikedClothesPage(), 
+    const LikedClothesPage(),
     const HomeScreen(),
     const CartScreen(),
-    ProfileScreen(), 
+    ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    // Check if the current theme is dark mode
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -46,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomAppBar(
         elevation: 0,
         height: 70,
-        color: Colors.white,
+        color: isDarkMode ? Colors.grey[850] : Colors.white, // Dark grey in dark mode, white in light mode
         shape: const CircularNotchedRectangle(),
         notchMargin: 5,
         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -62,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
               },
               icon: Icon(
                 Ionicons.home_outline,
-                color: currentTab == 0? kprimaryColor : Colors.grey.shade400,
+                color: currentTab == 0 ? kprimaryColor : (isDarkMode ? Colors.white : Colors.grey.shade400),
               ),
             ),
             IconButton(
@@ -73,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
               },
               icon: Icon(
                 Ionicons.heart_outline,
-                color: currentTab == 1? kprimaryColor : Colors.grey.shade400,
+                color: currentTab == 1 ? kprimaryColor : (isDarkMode ? Colors.white : Colors.grey.shade400),
               ),
             ),
             const SizedBox(width: 40),
@@ -85,7 +87,7 @@ class _MainScreenState extends State<MainScreen> {
               },
               icon: Icon(
                 Ionicons.cart_outline,
-                color: currentTab == 3? kprimaryColor : Colors.grey.shade400,
+                color: currentTab == 3 ? kprimaryColor : (isDarkMode ? Colors.white : Colors.grey.shade400),
               ),
             ),
             IconButton(
@@ -96,7 +98,7 @@ class _MainScreenState extends State<MainScreen> {
               },
               icon: Icon(
                 Ionicons.person_outline,
-                color: currentTab == 4? kprimaryColor : Colors.grey.shade400,
+                color: currentTab == 4 ? kprimaryColor : (isDarkMode ? Colors.white : Colors.grey.shade400),
               ),
             ),
           ],

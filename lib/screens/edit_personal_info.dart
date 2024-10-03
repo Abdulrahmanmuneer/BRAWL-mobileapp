@@ -60,6 +60,8 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit Personal Info'),
@@ -74,36 +76,42 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                 labelText: 'Email',
               ),
               enabled: false, // Make the email field unchangeable
+              style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Set input text color
             ),
             TextFormField(
               controller: firstNameController,
               decoration: const InputDecoration(
                 labelText: 'First Name',
               ),
+              style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Set input text color
             ),
             TextFormField(
               controller: lastNameController,
               decoration: const InputDecoration(
                 labelText: 'Last Name',
               ),
+              style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Set input text color
             ),
             TextFormField(
               controller: ageRangeController,
               decoration: const InputDecoration(
                 labelText: 'Age Range',
               ),
+              style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Set input text color
             ),
             TextFormField(
               controller: addressController,
               decoration: const InputDecoration(
                 labelText: 'Address',
               ),
+              style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Set input text color
             ),
             TextFormField(
               controller: phoneController,
               decoration: const InputDecoration(
                 labelText: 'Phone',
               ),
+              style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Set input text color
             ),
             SizedBox(height: 20),
             ElevatedButton(

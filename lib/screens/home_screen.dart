@@ -18,6 +18,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Determine if dark mode is enabled
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDarkMode ? Colors.white : Colors.black;
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
@@ -45,34 +49,39 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       "Special For You",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
+                        color: textColor, // Dynamically change text color
                       ),
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: const Text("See all"),
+                      child: Text(
+                        "See all",
+                        style: TextStyle(
+                          color: textColor,  // Dynamically change button text color
+                        ),
+                      ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 10),
                 GridView.builder(
-  physics: const NeverScrollableScrollPhysics(),
-  shrinkWrap: true,
-  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-    crossAxisCount: 2,
-    crossAxisSpacing: 20,
-    mainAxisSpacing: 20,
-  ),
-  itemCount: products.length,  // Now handles more products
-  itemBuilder: (context, index) {
-    return ProductCard(product: products[index]);  // Each product will open its info
-  },
-),
-
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20,
+                  ),
+                  itemCount: products.length,  // Now handles more products
+                  itemBuilder: (context, index) {
+                    return ProductCard(product: products[index]);  // Each product will open its info
+                  },
+                ),
               ],
             ),
           ),

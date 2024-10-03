@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:brawl_store/constants.dart';
@@ -14,14 +13,24 @@ class LikedClothesPage extends StatefulWidget {
 class _LikedClothesPageState extends State<LikedClothesPage> {
   @override
   Widget build(BuildContext context) {
+    // Check if the current theme is dark mode
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Liked'),
+        backgroundColor: isDarkMode ? Colors.black : kcontentColor, // Black in dark mode, use kcontentColor in light mode
+        title: Text(
+          'Liked',
+          style: TextStyle(
+            color: isDarkMode ? Colors.white : Colors.black, // White text in dark mode, black in light mode
+          ),
+        ),
       ),
       body: Column(
         children: [
-          const SearchField(),  
+          const SearchField(),
+          SizedBox(height: 20),
           Expanded(
             child: ListView(
               children: [
@@ -47,6 +56,9 @@ class _LikedClothesPageState extends State<LikedClothesPage> {
 
   Widget _buildClothingItemCard(
     BuildContext context, String title, String imageUrl, String description) {
+    // Check if the current theme is dark mode
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -86,7 +98,9 @@ class _LikedClothesPageState extends State<LikedClothesPage> {
             child: Text(
               title,
               style: GoogleFonts.poppins(
-                textStyle: Theme.of(context).textTheme.titleLarge,
+                textStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  color: isDarkMode ? Colors.white : Colors.black, // Set clothing item title text color based on theme
+                ),
               ),
             ),
           ),
@@ -96,7 +110,9 @@ class _LikedClothesPageState extends State<LikedClothesPage> {
             child: Text(
               description,
               style: GoogleFonts.poppins(
-                textStyle: const TextStyle(color: Colors.grey),
+                textStyle: const TextStyle(
+                  color: Colors.grey, // Keep description color as grey
+                ),
               ),
             ),
           ),
@@ -138,6 +154,7 @@ class SearchField extends StatelessWidget {
             child: TextField(
               decoration: InputDecoration(
                 hintText: "Search...",
+                hintStyle: TextStyle(color: Colors.white), // Hint text color to white
                 border: InputBorder.none,
               ),
             ),

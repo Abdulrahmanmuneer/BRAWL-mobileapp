@@ -20,7 +20,10 @@ class ProductAppBar extends StatelessWidget {
               backgroundColor: Colors.white,
               padding: const EdgeInsets.all(15),
             ),
-            icon: const Icon(Ionicons.chevron_back),
+            icon: const Icon(
+              Ionicons.chevron_back,
+              color: Colors.black, // Icon color set to black
+            ),
           ),
           const Spacer(),
           IconButton(
@@ -29,7 +32,10 @@ class ProductAppBar extends StatelessWidget {
               backgroundColor: Colors.white,
               padding: const EdgeInsets.all(15),
             ),
-            icon: const Icon(Ionicons.share_social_outline),
+            icon: const Icon(
+              Ionicons.share_social_outline,
+              color: Colors.black, // Icon color set to black
+            ),
           ),
           const SizedBox(width: 5),
           IconButton(
@@ -38,7 +44,10 @@ class ProductAppBar extends StatelessWidget {
               backgroundColor: Colors.white,
               padding: const EdgeInsets.all(15),
             ),
-            icon: const Icon(Ionicons.heart_outline),
+            icon: const Icon(
+              Ionicons.heart_outline,
+              color: Colors.black, // Icon color set to black
+            ),
           ),
         ],
       ),

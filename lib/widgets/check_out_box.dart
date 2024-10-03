@@ -4,6 +4,7 @@ import 'package:brawl_store/models/cart_item.dart';
 
 class CheckOutBox extends StatelessWidget {
   final List<CartItem> items;
+
   const CheckOutBox({
     super.key,
     required this.items,
@@ -11,14 +12,21 @@ class CheckOutBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Check if the current theme is dark mode
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       height: 300,
       width: double.infinity,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: isDarkMode ? Colors.black : Colors.white, // Set to black in dark mode
+        borderRadius: const BorderRadius.only(
           topRight: Radius.circular(30),
           topLeft: Radius.circular(30),
+        ),
+        border: Border.all(
+          color: Colors.white, // White outline
+          width: 2, // Width of the outline
         ),
       ),
       padding: const EdgeInsets.all(20),
@@ -38,10 +46,10 @@ class CheckOutBox extends StatelessWidget {
               filled: true,
               fillColor: kcontentColor,
               hintText: "Enter Discount Code",
-              hintStyle: const TextStyle(
+              hintStyle: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: Colors.grey,
+                color: isDarkMode ? const Color.fromARGB(179, 4, 3, 3) : Colors.grey, // Adjust hint color
               ),
               suffixIcon: TextButton(
                 onPressed: () {},
@@ -65,20 +73,21 @@ class CheckOutBox extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.grey,
+                  color: Colors.grey, // Change this color if you want it different in dark mode
                 ),
               ),
               Text(
                 "\$${items.length > 1 ? items.map<double>((e) => e.quantity * e.product.price).reduce((value1, value2) => value1 + value2) : items[0].product.price * items[0].quantity}",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
+                  color: isDarkMode ? Colors.white : Colors.black, // Adjust subtotal color
                 ),
-              )
+              ),
             ],
           ),
           const SizedBox(height: 10),
-          const Divider(),
+          const Divider(color: Colors.grey), // Optionally change divider color for dark mode
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,15 +97,17 @@ class CheckOutBox extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
+                  color: Colors.grey, // Change this color if you want it different in dark mode
                 ),
               ),
               Text(
                 "\$${items.length > 1 ? items.map<double>((e) => e.quantity * e.product.price).reduce((value1, value2) => value1 + value2) : items[0].product.price * items[0].quantity}",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
+                  color: isDarkMode ? Colors.white : Colors.black, // Adjust total color
                 ),
-              )
+              ),
             ],
           ),
           const SizedBox(height: 20),
@@ -110,7 +121,7 @@ class CheckOutBox extends StatelessWidget {
               "Check out",
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white,
+                color: Colors.white, // Keep button text white
                 fontWeight: FontWeight.bold,
               ),
             ),

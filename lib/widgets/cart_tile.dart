@@ -7,20 +7,27 @@ class CartTile extends StatelessWidget {
   final CartItem item;
   final Function() onRemove;
   final Function() onAdd;
-  const CartTile(
-      {super.key,
-      required this.item,
-      required this.onRemove,
-      required this.onAdd});
+
+  const CartTile({
+    super.key,
+    required this.item,
+    required this.onRemove,
+    required this.onAdd,
+  });
 
   @override
   Widget build(BuildContext context) {
+    // Check if the current theme is dark mode
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Stack(
       children: [
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 180, 187, 196),
+            color: isDarkMode
+                ? Color.fromARGB(255, 80, 80, 80) // Dark mode color
+                : Color.fromARGB(255, 180, 187, 196), // Light mode color
             borderRadius: BorderRadius.circular(20),
           ),
           padding: const EdgeInsets.all(10),
@@ -44,26 +51,30 @@ class CartTile extends StatelessWidget {
                 children: [
                   Text(
                     item.product.title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
+                      color: isDarkMode ? Colors.white : Colors.black, // Text color for dark mode
                     ),
                   ),
                   const SizedBox(height: 5),
                   Text(
                     item.product.category,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 249, 248, 248),
+                      color: isDarkMode
+                          ? Colors.white70 // Slightly lighter for readability
+                          : Color.fromARGB(255, 249, 248, 248), // Light mode color
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     "\$${item.product.price}",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
+                      color: isDarkMode ? Colors.white : Colors.black, // Text color for dark mode
                     ),
                   ),
                 ],
@@ -125,7 +136,7 @@ class CartTile extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

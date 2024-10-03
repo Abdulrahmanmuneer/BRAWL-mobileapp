@@ -7,6 +7,9 @@ class ProductDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Check if the current theme is dark mode
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -29,10 +32,10 @@ class ProductDescription extends StatelessWidget {
         const SizedBox(height: 20),
         Text(
           text,
-          style: const TextStyle(
-            color: Colors.grey,
+          style: TextStyle(
+            color: isDarkMode ? Colors.white : Colors.grey, // Change text color based on theme
           ),
-        )
+        ),
       ],
     );
   }

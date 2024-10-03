@@ -9,14 +9,19 @@ class ProductInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the current theme brightness
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final textColor = isDarkMode ? Colors.white : Colors.black; // Set text color based on theme
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           product.title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
+            color: textColor, // Apply text color
           ),
         ),
         Row(
@@ -26,9 +31,10 @@ class ProductInfo extends StatelessWidget {
               children: [
                 Text(
                   "\$${product.price}",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
+                    color: textColor, // Apply text color
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -66,10 +72,10 @@ class ProductInfo extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 5),
-                    const Text(
+                    Text(
                       "(320 Reviews)",
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: isDarkMode ? Colors.grey[400] : Colors.grey, // Adjust gray for dark mode
                         fontSize: 14,
                       ),
                     )
@@ -78,14 +84,15 @@ class ProductInfo extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            const Text.rich(
+            Text.rich(
               TextSpan(
                 children: [
-                  TextSpan(text: "Seller: "),
+                  TextSpan(text: "Seller: ", style: TextStyle(color: textColor)), // Apply text color
                   TextSpan(
                     text: "ali baba express",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      color: textColor, // Apply text color
                     ),
                   ),
                 ],

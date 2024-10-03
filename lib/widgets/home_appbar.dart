@@ -9,19 +9,25 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the current theme brightness
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    // Flip colors: black in dark mode, white in light mode
+    final iconColor = isDarkMode ? Colors.black : const Color.fromARGB(255, 0, 0, 0);
+    final textColor = isDarkMode ? Colors.white : Colors.black;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
           onPressed: () {
-            _showLogoutDialog(context);
+            _showLogoutDialog(context, textColor);
           },
           style: IconButton.styleFrom(
             backgroundColor: kcontentColor,
             padding: const EdgeInsets.all(15),
           ),
           iconSize: 30,
-          icon: const Icon(Ionicons.arrow_back_circle_sharp),
+          icon: Icon(Ionicons.arrow_back_circle_sharp, color: iconColor),  // Icon color flips based on theme
         ),
         IconButton(
           onPressed: () {},
@@ -30,28 +36,29 @@ class HomeAppBar extends StatelessWidget {
             padding: const EdgeInsets.all(15),
           ),
           iconSize: 30,
-          icon: const Icon(Ionicons.notifications_outline),
+          icon: Icon(Ionicons.notifications_outline, color: iconColor),  // Icon color flips based on theme
         ),
       ],
     );
   }
 
-  Future<void> _showLogoutDialog(BuildContext context) async {
+  Future<void> _showLogoutDialog(BuildContext context, Color textColor) async {
     bool? logoutConfirmed = await showDialog<bool>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Confirm Logout'),
-          content: const Text('Are you sure you want to logout?'),
+          title: Text('Confirm Logout', style: TextStyle(color: textColor)),
+          content: Text('Are you sure you want to logout?', style: TextStyle(color: textColor)),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           actions: [
             TextButton(
-              child: const Text('No'),
+              child: Text('No', style: TextStyle(color: textColor)),
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
             ),
             TextButton(
-              child: const Text('Yes'),
+              child: Text('Yes', style: TextStyle(color: textColor)),
               onPressed: () {
                 Navigator.of(context).pop(true);
               },

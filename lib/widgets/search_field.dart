@@ -3,9 +3,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:brawl_store/constants.dart';
 
 class SearchField extends StatelessWidget {
-  const SearchField({
-    super.key,
-  });
+  const SearchField({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,25 +11,24 @@ class SearchField extends StatelessWidget {
       height: 55,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: kcontentColor,
+        color: Theme.of(context).cardColor, // Adapt background to theme
         borderRadius: BorderRadius.circular(30),
       ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 25,
-        vertical: 5,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
       child: Row(
         children: [
-          const Icon(
+          Icon(
             Ionicons.search,
-            color: Colors.grey,
+            color: Theme.of(context).iconTheme.color, // Adapt to theme
           ),
           const SizedBox(width: 10),
           const Flexible(
             flex: 4,
             child: TextField(
+              style: TextStyle(color: Colors.white), // Adapt input text color
               decoration: InputDecoration(
                 hintText: "Search...",
+                hintStyle: TextStyle(color: Colors.grey), // Hint color in dark mode
                 border: InputBorder.none,
               ),
             ),
@@ -43,9 +40,9 @@ class SearchField extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {},
-            icon: const Icon(
+            icon: Icon(
               Ionicons.options_outline,
-              color: Colors.grey,
+              color: Theme.of(context).iconTheme.color, // Adapt icon color to theme
             ),
           ),
         ],

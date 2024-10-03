@@ -5,6 +5,7 @@ import 'package:brawl_store/constants.dart';
 class AddToCart extends StatelessWidget {
   final Function() onAdd;
   final Function() onRemove;
+
   const AddToCart({
     super.key,
     required this.currentNumber,
@@ -16,13 +17,19 @@ class AddToCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the current theme brightness
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final iconColor = isDarkMode ? const Color.fromARGB(255, 237, 233, 233) : const Color.fromARGB(255, 202, 200, 200);
+    final textColor = isDarkMode ? const Color.fromARGB(255, 244, 243, 243) : const Color.fromARGB(255, 255, 254, 254);
+    final buttonColor = isDarkMode ? const Color.fromARGB(255, 37, 37, 37) : const Color.fromARGB(255, 83, 65, 110); // light grey for dark mode
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
         height: 80,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          color: Colors.black,
+          color: buttonColor,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 10),
         alignment: Alignment.center,
@@ -43,23 +50,23 @@ class AddToCart extends StatelessWidget {
                   IconButton(
                     onPressed: onRemove,
                     iconSize: 18,
-                    icon: const Icon(
+                    icon: Icon(
                       Ionicons.remove_outline,
-                      color: Colors.white,
+                      color: iconColor,
                     ),
                   ),
                   const SizedBox(width: 5),
                   Text(
                     currentNumber.toString(),
-                    style: const TextStyle(color: Colors.white),
+                    style: TextStyle(color: textColor),
                   ),
                   const SizedBox(width: 5),
                   IconButton(
                     onPressed: onAdd,
                     iconSize: 18,
-                    icon: const Icon(
+                    icon: Icon(
                       Ionicons.add_outline,
-                      color: Colors.white,
+                      color: iconColor,
                     ),
                   ),
                 ],
@@ -73,10 +80,10 @@ class AddToCart extends StatelessWidget {
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: const Text(
+              child: Text(
                 "Add to Cart",
                 style: TextStyle(
-                  color: Colors.white,
+                  color: textColor,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),

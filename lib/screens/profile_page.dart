@@ -43,6 +43,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -66,6 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: GoogleFonts.poppins(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
+                      color: isDarkMode ? Colors.white : Colors.black, // Adapt text color
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -73,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     _email,
                     style: GoogleFonts.poppins(
                       fontSize: 16,
-                      color: Colors.grey,
+                      color: isDarkMode ? Colors.white54 : Colors.grey, // Adapt text color
                     ),
                   ),
                 ],
@@ -81,10 +84,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 20),
             ListTile(
-              leading: Icon(Icons.person),
+              leading: Icon(Icons.person, color: isDarkMode ? Colors.white : Colors.black),
               title: Text(
                 'Update personal info',
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.poppins(color: isDarkMode ? Colors.white : Colors.black),
               ),
               onTap: () {
                 Navigator.push(
@@ -97,21 +100,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
               leading: const Icon(Icons.camera_alt_rounded),
               title: Text(
                 'Upload Profile Picture',
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.poppins(color: isDarkMode ? Colors.white : Colors.black),
               ),
               onTap: () {
                 showDialog(
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text('Upload Profile Picture'),
-                      content: Text('Choose a method to upload your profile picture'),
+                      title: Text(
+                        'Upload Profile Picture',
+                        style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Adapt text color
+                      ),
+                      content: Text(
+                        'Choose a method to upload your profile picture',
+                        style: TextStyle(color: isDarkMode ? Colors.white70 : Colors.black87), // Adapt text color
+                      ),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: Text('Cancel'),
+                          child: Text(
+                            'Cancel',
+                            style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Adapt text color
+                          ),
                         ),
                         TextButton(
                           onPressed: () async {
@@ -124,7 +136,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             }
                             Navigator.pop(context);
                           },
-                          child: Text('Camera'),
+                          child: Text(
+                            'Camera',
+                            style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Adapt text color
+                          ),
                         ),
                         TextButton(
                           onPressed: () async {
@@ -137,7 +152,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             }
                             Navigator.pop(context);
                           },
-                          child: Text('Gallery'),
+                          child: Text(
+                            'Gallery',
+                            style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Adapt text color
+                          ),
                         ),
                       ],
                     );
@@ -150,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               leading: const Icon(Icons.notifications),
               title: Text(
                 'Enable Notifications',
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.poppins(color: isDarkMode ? Colors.white : Colors.black),
               ),
               onTap: () {
                 // TODO: implement enable notifications functionality
@@ -161,7 +179,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               leading: const Icon(Icons.info),
               title: Text(
                 'About',
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.poppins(color: isDarkMode ? Colors.white : Colors.black),
               ),
               onTap: () {
                 // TODO: implement about functionality
@@ -169,24 +187,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const Divider(),
             ListTile(
-              leading: Icon(Icons.delete),
+              leading: Icon(Icons.delete, color: isDarkMode ? Colors.white : Colors.black),
               title: Text(
                 'Delete Account',
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.poppins(color: isDarkMode ? Colors.white : Colors.black),
               ),
               onTap: () {
                 showDialog(
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text('Confirm Deletion'),
-                      content: Text('Are you sure you want to delete your account?'),
+                      title: Text(
+                        'Confirm Deletion',
+                        style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Adapt text color
+                      ),
+                      content: Text(
+                        'Are you sure you want to delete your account?',
+                        style: TextStyle(color: isDarkMode ? Colors.white70 : Colors.black87), // Adapt text color
+                      ),
                       actions: [
                         TextButton(
                           onPressed: () {
-                            Navigator.pop(context );
+                            Navigator.pop(context);
                           },
-                          child: Text('No'),
+                          child: Text(
+                            'No',
+                            style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Adapt text color
+                          ),
                         ),
                         TextButton(
                           onPressed: () async {
@@ -199,7 +226,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               (route) => false,
                             );
                           },
-                          child: Text('Yes'),
+                          child: Text(
+                            'Yes',
+                            style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), // Adapt text color
+                          ),
                         ),
                       ],
                     );
@@ -209,10 +239,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const Divider(),
             ListTile(
-              leading: Icon(Icons.exit_to_app),
+              leading: Icon(Icons.exit_to_app, color: isDarkMode ? Colors.white : Colors.black),
               title: Text(
                 'Logout',
-                style: GoogleFonts.poppins(),
+                style: GoogleFonts.poppins(color: isDarkMode ? Colors.white : Colors.black),
               ),
               onTap: () {
                 Navigator.pushNamedAndRemoveUntil(
