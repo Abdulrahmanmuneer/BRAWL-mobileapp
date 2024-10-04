@@ -22,6 +22,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final textColor = isDarkMode ? Colors.white : Colors.black;
 
+    // Determine if the device is in landscape mode
+    final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
@@ -62,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(
                         "See all",
                         style: TextStyle(
-                          color: textColor,  // Dynamically change button text color
+                          color: textColor, // Dynamically change button text color
                         ),
                       ),
                     ),
@@ -72,14 +75,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: isLandscape ? 3 : 2, // 3 columns in landscape, 2 in portrait
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20,
                   ),
-                  itemCount: products.length,  // Now handles more products
+                  itemCount: products.length, // Now handles more products
                   itemBuilder: (context, index) {
-                    return ProductCard(product: products[index]);  // Each product will open its info
+                    return ProductCard(product: products[index]); // Each product will open its info
                   },
                 ),
               ],
