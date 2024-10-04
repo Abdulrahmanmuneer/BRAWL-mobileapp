@@ -17,75 +17,68 @@ class CartTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Check if the current theme is dark mode
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
-    return Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: isDarkMode
-                ? Color.fromARGB(255, 80, 80, 80) // Dark mode color
-                : Color.fromARGB(255, 180, 187, 196), // Light mode color
-            borderRadius: BorderRadius.circular(20),
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: isDarkMode
+            ? Color.fromARGB(255, 80, 80, 80)
+            : Color.fromARGB(255, 180, 187, 196),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      padding: const EdgeInsets.all(10),
+      child: Row(
+        children: [
+          Container(
+            height: 85,
+            width: 85,
+            decoration: BoxDecoration(
+              color: kcontentColor,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            padding: const EdgeInsets.all(10),
+            child: Image.asset(
+              item.product.image,
+            ),
           ),
-          padding: const EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Container(
-                height: 85,
-                width: 85,
-                decoration: BoxDecoration(
-                  color: kcontentColor,
-                  borderRadius: BorderRadius.circular(20),
+          const SizedBox(width: 10),
+          Expanded( // Use Expanded to allow flexible space
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.product.title,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: isDarkMode ? Colors.white : Colors.black,
+                  ),
                 ),
-                padding: const EdgeInsets.all(10),
-                child: Image.asset(
-                  item.product.image,
+                const SizedBox(height: 5),
+                Text(
+                  item.product.category,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: isDarkMode
+                        ? Colors.white70
+                        : Color.fromARGB(255, 249, 248, 248),
+                  ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    item.product.title,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: isDarkMode ? Colors.white : Colors.black, // Text color for dark mode
-                    ),
+                const SizedBox(height: 10),
+                Text(
+                  "\$${item.product.price}",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: isDarkMode ? Colors.white : Colors.black,
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    item.product.category,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: isDarkMode
-                          ? Colors.white70 // Slightly lighter for readability
-                          : Color.fromARGB(255, 249, 248, 248), // Light mode color
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    "\$${item.product.price}",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: isDarkMode ? Colors.white : Colors.black, // Text color for dark mode
-                    ),
-                  ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
-        ),
-        Positioned(
-          top: 5,
-          right: 5,
-          child: Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               IconButton(
@@ -100,10 +93,6 @@ class CartTile extends StatelessWidget {
                 height: 40,
                 decoration: BoxDecoration(
                   color: kcontentColor,
-                  border: Border.all(
-                    color: Colors.grey.shade200,
-                    width: 2,
-                  ),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -136,8 +125,8 @@ class CartTile extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

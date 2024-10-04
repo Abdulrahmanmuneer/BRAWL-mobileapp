@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:brawl_store/constants.dart';
 import 'package:brawl_store/models/cart_item.dart';
 
 class CheckOutBox extends StatelessWidget {
@@ -12,27 +11,26 @@ class CheckOutBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Check if the current theme is dark mode
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
-      height: 300,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: isDarkMode ? Colors.black : Colors.white, // Set to black in dark mode
+        color: isDarkMode ? Colors.black : Colors.white,
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(30),
           topLeft: Radius.circular(30),
         ),
         border: Border.all(
           color: Colors.white, // White outline
-          width: 2, // Width of the outline
+          width: 2,
         ),
       ),
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Discount Code Input
           TextField(
             decoration: InputDecoration(
               border: OutlineInputBorder(
@@ -44,19 +42,19 @@ class CheckOutBox extends StatelessWidget {
                 horizontal: 15,
               ),
               filled: true,
-              fillColor: kcontentColor,
+              fillColor: isDarkMode ? Colors.grey[800] : Colors.grey[300],
               hintText: "Enter Discount Code",
               hintStyle: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: isDarkMode ? const Color.fromARGB(179, 4, 3, 3) : Colors.grey, // Adjust hint color
+                color: isDarkMode ? Colors.grey[400] : Colors.grey,
               ),
               suffixIcon: TextButton(
                 onPressed: () {},
                 child: const Text(
                   "Apply",
                   style: TextStyle(
-                    color: kprimaryColor,
+                    color: Colors.orange,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -65,6 +63,7 @@ class CheckOutBox extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
+          // Subtotal Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -73,22 +72,23 @@ class CheckOutBox extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.grey, // Change this color if you want it different in dark mode
+                  color: Colors.grey,
                 ),
               ),
               Text(
-                "\$${items.length > 1 ? items.map<double>((e) => e.quantity * e.product.price).reduce((value1, value2) => value1 + value2) : items[0].product.price * items[0].quantity}",
+                "\$${items.fold<double>(0, (sum, item) => sum + item.quantity * item.product.price)}",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: isDarkMode ? Colors.white : Colors.black, // Adjust subtotal color
+                  color: isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
             ],
           ),
           const SizedBox(height: 10),
-          const Divider(color: Colors.grey), // Optionally change divider color for dark mode
+          const Divider(color: Colors.grey),
           const SizedBox(height: 10),
+          // Total Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -97,31 +97,32 @@ class CheckOutBox extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.grey, // Change this color if you want it different in dark mode
+                  color: Colors.grey,
                 ),
               ),
               Text(
-                "\$${items.length > 1 ? items.map<double>((e) => e.quantity * e.product.price).reduce((value1, value2) => value1 + value2) : items[0].product.price * items[0].quantity}",
+                "\$${items.fold<double>(0, (sum, item) => sum + item.quantity * item.product.price)}",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: isDarkMode ? Colors.white : Colors.black, // Adjust total color
+                  color: isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
             ],
           ),
           const SizedBox(height: 20),
+          // Checkout Button
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: kprimaryColor,
+              backgroundColor: Colors.orange,
               minimumSize: const Size(double.infinity, 55),
             ),
             child: const Text(
               "Check out",
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white, // Keep button text white
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
