@@ -16,7 +16,7 @@ class _LoginPage2State extends State<LoginPage2> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
+      body: SingleChildScrollView( // Wrap with SingleChildScrollView
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -26,6 +26,7 @@ class _LoginPage2State extends State<LoginPage2> {
               width: 250,
               height: 250,
             ),
+            const SizedBox(height: 20),
             TextField(
               controller: _emailController,
               decoration: const InputDecoration(
@@ -60,8 +61,13 @@ class _LoginPage2State extends State<LoginPage2> {
                   ),
                 ),
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: const Color.fromARGB(255, 247, 244, 244)),
-                  child: const Text("Login", style: TextStyle(color: Color.fromARGB(255, 12, 9, 9))),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 247, 244, 244),
+                  ),
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(color: Color.fromARGB(255, 12, 9, 9)),
+                  ),
                   onPressed: () async {
                     await Authservice().signin(
                       email: _emailController.text,
@@ -78,7 +84,10 @@ class _LoginPage2State extends State<LoginPage2> {
               onPressed: () {
                 Navigator.pushReplacementNamed(context, '/registrationpage');
               },
-              child: const Text("Don't have an account? Register", style: TextStyle(color: Colors.white)),
+              child: const Text(
+                "Don't have an account? Register",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),
@@ -86,3 +95,4 @@ class _LoginPage2State extends State<LoginPage2> {
     );
   }
 }
+
